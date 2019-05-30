@@ -1,0 +1,44 @@
+  {
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+   {
+    "name": "client",
+    "image": "ronit1495/multi-client",
+    "hostname": "client",
+    "essential": false
+   },
+   
+   {
+   
+    "name": "server",
+    "image": "ronit1495/multi-server",
+    "hostname": "server",
+    "essential": false
+   },
+   
+   {
+     "name": "worker",
+     "image": "ronit1495/multi-worker",
+     "hostname": "worker",
+     "essential": false
+   },
+   
+   {
+     "name": "nginx",
+     "image": "ronit1495/multi-nginx",
+     "hostname": "nginx",
+     "essential": true,
+     "portMappings": [
+     {
+       "hostPort": 80,
+       "containerPort": 80
+     }
+     ],
+      
+      "links": ["client","server"]
+      
+     
+   }
+   
+  ]
+ }
