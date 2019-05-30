@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+  
+before_install:
+  - docker build -t ronit1495/react-test -f ./client/Dockerfile.dev ./client
+ 
+script:
+  - docker run ronit1495/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t ronit1495/multi-client ./client
+  - docker build -t ronit1495/multi-nginx ./nginx
+  - docker build -t ronit1495/multi-server ./server
+  - docker build -t ronit1495/multi-worker ./worker
+  
+  - echo "$PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ronit1495/multi-client
+  - docker push ronit1495/multi-nginx
+  - docker push ronit1495/multi-server
+  - docker push ronit1495/multi-worker
