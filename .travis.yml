@@ -19,3 +19,18 @@ after_success:
   - docker push ronit1495/multi-nginx
   - docker push ronit1495/multi-server
   - docker push ronit1495/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  ap: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-south-1-414433672907
+  bucket_path: docker-multi
+  
+  on:
+    branch: master
+  
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: AWS_SECRET_KEY
