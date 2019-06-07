@@ -5,7 +5,8 @@
     "name": "client",
     "image": "ronit1495/multi-client",
     "hostname": "client",
-    "essential": false
+    "essential": false,
+     "memory": 128
    },
    
    {
@@ -13,14 +14,16 @@
     "name": "server",
     "image": "ronit1495/multi-server",
     "hostname": "server",
-    "essential": false
+    "essential": false,
+     "memory": 128
    },
    
    {
      "name": "worker",
      "image": "ronit1495/multi-worker",
      "hostname": "worker",
-     "essential": false
+     "essential": false,
+     "memory": 128
    },
    
    {
@@ -35,7 +38,8 @@
      }
      ],
       
-      "links": ["client","server"]
+      "links": ["client","server"],
+     "memory": 128
       
      
    }
